@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songlib.view.IndexController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" percentWidth="20.0" prefWidth="80.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="486.0" minWidth="10.0" percentWidth="60.0" prefWidth="392.0" />
@@ -20,15 +20,15 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ListView id="songList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <ListView fx:id="songView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets top="20.0" />
          </GridPane.margin>
       </ListView>
-      <Button id="addButton" mnemonicParsing="false" text="Add Song" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-      <Button id="editButton" mnemonicParsing="false" text="Edit Song" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button id="deleteButton" mnemonicParsing="false" text="Delete Song" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-      <Label id="details" text="Song Details:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+      <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#addSong" text="Add Song" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+      <Button fx:id="editButton" mnemonicParsing="false" text="Edit Song" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete Song" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Label fx:id="details" text="Song Details:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
