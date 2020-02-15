@@ -1,7 +1,7 @@
 /**
  * 
  */
-package songlib.common;
+package songlib.model;
 
 /**
  * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
