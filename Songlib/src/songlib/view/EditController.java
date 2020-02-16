@@ -5,6 +5,7 @@ package songlib.view;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,6 +36,7 @@ public class EditController {
     	artistField.setText(AppData.selectedSong.artist);
     	albumField.setText(AppData.selectedSong.album);
     	yearField.setText(AppData.selectedSong.year);
+    	Platform.runLater(() -> nameField.requestFocus());
     }
 
     public void cancel() {

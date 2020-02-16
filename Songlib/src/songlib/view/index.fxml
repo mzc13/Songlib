@@ -27,7 +27,7 @@
       </ListView>
       <Button fx:id="addButton" mnemonicParsing="false" onAction="#addSong" text="Add Song" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
       <Button fx:id="editButton" mnemonicParsing="false" onAction="#editSong" text="Edit Song" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete Song" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteSong" text="Delete Song" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
       <Label fx:id="details" text="Song Details:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets />

@@ -5,6 +5,7 @@ package songlib.view;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,6 +29,11 @@ public class AddController {
     @FXML TextField artistField;
     @FXML TextField albumField;
     @FXML TextField yearField;
+    
+    @FXML
+    public void initialize() {
+    	Platform.runLater(() -> nameField.requestFocus());
+    }
 
     public void cancel() {
     	Stage window = (Stage) cancelButton.getScene().getWindow();
