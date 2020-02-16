@@ -62,12 +62,43 @@ public class IndexController {
 		}
 	}
 	
+	public void editSong() {
+		AppData.songs.remove(AppData.selectedSong);
+		Stage window = (Stage) addButton.getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/songlib/view/edit.fxml"));
+		try {
+			window.setScene(new Scene(loader.load()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void select(Song s) {
-		songView.getSelectionModel().select(s);
-		AppData.selectedSong = s;
+		select(songList.indexOf(s));
 	}
 	public void select(int index) {
 		songView.getSelectionModel().select(index);
 		AppData.selectedSong = songView.getSelectionModel().getSelectedItem();
+		setSongDetails();
+	}
+	public void setSongDetails() {
+		if(AppData.selectedSong != null) {
+			details.setText("Song Details:\n"
+					+ "Name: " + AppData.selectedSong.name + "\n"
+					+ "Artist: " + AppData.selectedSong.artist + "\n"
+					+ "Album: " + AppData.selectedSong.album + "\n"
+					+ "Year: " + AppData.selectedSong.year + "\n");
+		}else {
+			details.setText("Song Details:");
+		}
+	}
+	public void listMouseListener() {
+		int index = songView.getSelectionModel().getSelectedIndex();
+		if(index >= 0) {
+			select(songView.getSelectionModel().getSelectedIndex());
+		}else {
+			return;
+		}
 	}
 }

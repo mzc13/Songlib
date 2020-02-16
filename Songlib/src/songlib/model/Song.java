@@ -8,10 +8,10 @@ package songlib.model;
  *
  */
 public class Song implements Comparable<Song> {
-	String name;
-	String artist;
-	String album;
-	String year;
+	public String name;
+	public String artist;
+	public String album;
+	public String year;
 
 	/**
 	 * @param name - Required
