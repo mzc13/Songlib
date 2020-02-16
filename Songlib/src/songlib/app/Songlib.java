@@ -15,16 +15,16 @@ import javafx.stage.Stage;
 public class Songlib extends Application {
 
 	@Override
-	public void start(Stage mainStage) throws IOException {
+	public void start(Stage window) throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/songlib/view/index.fxml"));
 		GridPane root = (GridPane)loader.load();
 		Scene scene = new Scene(root);
-		mainStage.setScene(scene);
-		mainStage.setTitle("Songlib");
-		mainStage.setResizable(false);  
-		mainStage.show();
+		window.setScene(scene);
+		window.setTitle("Songlib");
+		window.setResizable(false);  
+		window.show();
 	}
 
 	/**

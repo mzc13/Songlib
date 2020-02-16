@@ -35,5 +35,21 @@ public class Song implements Comparable<Song> {
 			return this.artist.compareToIgnoreCase(s.artist);
 		}
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Song) {
+			Song s = (Song) o;
+			return (this.name.equalsIgnoreCase(s.name)) 
+					&& (this.artist.equalsIgnoreCase(s.artist));
+		}else {
+			return false;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return name + ", " + artist;
+	}
 
 }
