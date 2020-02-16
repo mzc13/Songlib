@@ -35,7 +35,7 @@ public class IndexController {
 	@FXML Button deleteButton;
 	
 	ObservableList<Song> songList = 
-			new SortedList<Song>(FXCollections.observableList(AppData.songs));
+			FXCollections.observableList(AppData.songs).sorted();
 	
 	@FXML
 	public void initialize() {
