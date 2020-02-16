@@ -6,12 +6,8 @@ package songlib.view;
 import java.io.IOException;
 import java.util.Collections;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,10 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import songlib.model.AppData;
 import songlib.model.Song;
@@ -51,6 +45,7 @@ public class IndexController {
 		if(songList.isEmpty()) {
 			editButton.setDisable(true);
 			deleteButton.setDisable(true);
+			setSongDetails();
 		}else if(AppData.selectedSong == null) {
 			select(0);
 		}else {
@@ -87,8 +82,18 @@ public class IndexController {
 		alert.setHeaderText("Are you sure you want to delete this song?");
 		alert.showAndWait();
 		if(alert.getResult() == ButtonType.OK) {
-//			AppData.songs.remove(AppData.selectedSong);
-			songList.remove(songList.indexOf(AppData.selectedSong));
+			int index = songList.indexOf(AppData.selectedSong);
+			Song newSelection = null;
+			try {
+				newSelection = songList.get(index + 1);
+			}catch(IndexOutOfBoundsException e) {
+				try {
+					newSelection = songList.get(index - 1);
+				}catch(IndexOutOfBoundsException e2) {}
+			}
+			songList.remove(index);
+			AppData.selectedSong = newSelection;
+			initialize();
 		}
 		return;
 	}
