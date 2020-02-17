@@ -46,8 +46,6 @@ public class IndexController {
 			editButton.setDisable(true);
 			deleteButton.setDisable(true);
 			setSongDetails();
-		}else if(AppData.selectedSong == null) {
-			select(0);
 		}else {
 			select(AppData.selectedSong);
 		}
@@ -99,7 +97,10 @@ public class IndexController {
 	}
 	
 	public void select(Song s) {
-		select(songList.indexOf(s));
+		if(s == null)
+			select(0);
+		else
+			select(songList.indexOf(s));
 	}
 	public void select(int index) {
 		noScrollSelect(index);
@@ -124,7 +125,7 @@ public class IndexController {
 	public void listMouseListener() {
 		int index = songView.getSelectionModel().getSelectedIndex();
 		if(index >= 0) {
-			noScrollSelect(songView.getSelectionModel().getSelectedIndex());
+			noScrollSelect(index);
 		}else {
 			return;
 		}
