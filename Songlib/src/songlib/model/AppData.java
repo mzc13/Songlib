@@ -25,9 +25,8 @@ import org.w3c.dom.NodeList;
 public abstract class AppData {
 	public static List<Song> songs = new LinkedList<Song>();
 	public static File xmlSaveFile = 
-			new File(System.getProperty("user.dir") + File.separator + "src"
-					+ File.separator + "songlib" + File.separator + "model" 
-					+ File.separator + "songlib_data.xml");
+			new File(System.getProperty("user.dir") + File.separator
+					+ "songlib_data.xml");
 	
 	/**
 	 * Set this variable to keep track of the selected song when switching
