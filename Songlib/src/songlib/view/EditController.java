@@ -1,5 +1,6 @@
 /**
- * 
+ * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
+ *
  */
 package songlib.view;
 
@@ -17,10 +18,7 @@ import javafx.stage.Stage;
 import songlib.model.AppData;
 import songlib.model.Song;
 
-/**
- * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
- *
- */
+
 public class EditController {
 
     @FXML Button cancelButton;
@@ -30,17 +28,25 @@ public class EditController {
     @FXML TextField albumField;
     @FXML TextField yearField;
     
+    /** Method that runs automatically when the scene is shown. */
     @FXML
     public void initialize() {
+    	// Pre-set the fields to the data of the song that is being edited
     	nameField.setText(AppData.selectedSong.name);
     	artistField.setText(AppData.selectedSong.artist);
     	albumField.setText(AppData.selectedSong.album);
     	yearField.setText(AppData.selectedSong.year);
+    	
+    	// When the scene is done loading, focus on the first text field
     	Platform.runLater(() -> nameField.requestFocus());
     }
 
+    /** If user clicks cancel, go back to the start scene. */
     public void cancel() {
+    	// Add the song back to the song list since it was temporarily removed
     	AppData.songs.add(AppData.selectedSong);
+    	
+    	// Go back to the start scene
     	Stage window = (Stage) cancelButton.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/songlib/view/index.fxml"));
@@ -51,12 +57,17 @@ public class EditController {
 		}
     }
 
+    /** 
+     * If user clicks submit, add the song after making sure it is valid. 
+     * Same logic as the submit button on the add page.
+     */
     public void submit() {
     	String name = nameField.getText().strip();
     	String artist = artistField.getText().strip();
     	String album = albumField.getText().strip();
     	String year = yearField.getText().strip();
     	
+    	// Show error if name or artist field is empty
     	if(name.equals("") || artist.equals("")) {
     		Alert alert = new Alert(AlertType.WARNING);
     		alert.initOwner(submitButton.getScene().getWindow());
@@ -65,6 +76,7 @@ public class EditController {
     		return;
     	}
     	
+    	// Show error if year is not a proper number
     	if(!year.equals("")) {
     		try {
         		int y = Integer.parseInt(year);
@@ -84,6 +96,7 @@ public class EditController {
         	}
     	}
     	
+    	// Show error if song list already contains the current song
     	Song s = new Song(name, artist, album, year);
     	if(AppData.songs.contains(s)) {
     		Alert alert = new Alert(AlertType.WARNING);
@@ -93,9 +106,11 @@ public class EditController {
     		return;
     	}
     	
+    	// Add the song to the song list and set it as selected
     	AppData.songs.add(s);
     	AppData.selectedSong = s;
     	
+    	// Go back to the start scene
     	Stage window = (Stage) submitButton.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/songlib/view/index.fxml"));

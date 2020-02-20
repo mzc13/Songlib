@@ -1,5 +1,6 @@
 /**
- * 
+ * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
+ *
  */
 package songlib.view;
 
@@ -17,10 +18,7 @@ import javafx.stage.Stage;
 import songlib.model.AppData;
 import songlib.model.Song;
 
-/**
- * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
- *
- */
+
 public class AddController {
 
     @FXML Button cancelButton;
@@ -30,11 +28,14 @@ public class AddController {
     @FXML TextField albumField;
     @FXML TextField yearField;
     
+    /** Method that runs automatically when the scene is shown. */
     @FXML
     public void initialize() {
+    	// When the scene is done loading, focus on the first text field
     	Platform.runLater(() -> nameField.requestFocus());
     }
 
+    /** If user clicks cancel, go back to the start scene. */
     public void cancel() {
     	Stage window = (Stage) cancelButton.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
@@ -46,12 +47,14 @@ public class AddController {
 		}
     }
 
+    /** If user clicks submit, add the song after making sure it is valid. */
     public void submit() {
     	String name = nameField.getText().strip();
     	String artist = artistField.getText().strip();
     	String album = albumField.getText().strip();
     	String year = yearField.getText().strip();
     	
+    	// Show error if name or artist field is empty
     	if(name.equals("") || artist.equals("")) {
     		Alert alert = new Alert(AlertType.WARNING);
     		alert.initOwner(submitButton.getScene().getWindow());
@@ -60,6 +63,7 @@ public class AddController {
     		return;
     	}
     	
+    	// Show error if year is not a proper number
     	if(!year.equals("")) {
     		try {
         		int y = Integer.parseInt(year);
@@ -79,6 +83,7 @@ public class AddController {
         	}
     	}
     	
+    	// Show error if song list already contains the current song
     	Song s = new Song(name, artist, album, year);
     	if(AppData.songs.contains(s)) {
     		Alert alert = new Alert(AlertType.WARNING);
@@ -88,9 +93,11 @@ public class AddController {
     		return;
     	}
     	
+    	// Add the song to the song list and set it as selected
     	AppData.songs.add(s);
     	AppData.selectedSong = s;
     	
+    	// Go back to the start scene
     	Stage window = (Stage) submitButton.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/songlib/view/index.fxml"));

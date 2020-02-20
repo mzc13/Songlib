@@ -1,12 +1,10 @@
 /**
- * 
- */
-package songlib.model;
-
-/**
  * @author Abdulrahman Abdulrahman and Muhmmad Choudhary
  *
  */
+package songlib.model;
+
+
 public class Song implements Comparable<Song> {
 	public String name;
 	public String artist;
@@ -27,6 +25,10 @@ public class Song implements Comparable<Song> {
 		this.year = (year != null) ? year : "";
 	}
 	
+	/**
+	 * Using a custom compareTo method so song sorting will automatically be
+	 * handled by the data structure holding the songs.
+	 */
 	@Override
 	public int compareTo(Song s) {
 		if(this.name.compareToIgnoreCase(s.name) != 0) {
@@ -36,6 +38,10 @@ public class Song implements Comparable<Song> {
 		}
 	}
 	
+	/**
+	 * Using a custom equals method so we can easily check if we're about to
+	 * insert a duplicate into our song list.
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Song) {
@@ -47,6 +53,10 @@ public class Song implements Comparable<Song> {
 		}
 	}
 	
+	/**
+	 * Using a custom toString method so the ListView only shows song name and
+	 * artist.
+	 */
 	@Override
 	public String toString() {
 		return name + ", " + artist;
