@@ -34,7 +34,13 @@ public class Songlib extends Application {
 		window.show();
 		
 		// Saves the user's data when app closes
-		window.setOnCloseRequest(e -> AppData.writeToFile());
+		window.setOnCloseRequest(e -> {
+			// Handles case where user closes app while editing song
+			if(AppData.selectedSong != null)
+				if(!AppData.songs.contains(AppData.selectedSong))
+					AppData.songs.add(AppData.selectedSong);
+			AppData.writeToFile();
+		});
 	}
 
 	/**

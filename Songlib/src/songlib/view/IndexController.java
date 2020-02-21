@@ -18,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import songlib.model.AppData;
@@ -31,6 +32,8 @@ public class IndexController {
 	@FXML Button addButton;
 	@FXML Button editButton;
 	@FXML Button deleteButton;
+	@FXML Tooltip saveLocation =
+			new Tooltip("Songs saved at "+ AppData.xmlSaveFile.getAbsolutePath());
 	
 	// Creating a JavaFX wrapper around the song data for use with ListView
 	ObservableList<Song> songList = 
@@ -45,6 +48,9 @@ public class IndexController {
 		// Initialize the songs ListView
 		songView.setItems(songList);
 		songView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		
+		songView.setTooltip(saveLocation);
+		details.setTooltip(saveLocation);
 		
 		if(songList.isEmpty()) {
 			// If the list is empty, disable appropriate buttons
